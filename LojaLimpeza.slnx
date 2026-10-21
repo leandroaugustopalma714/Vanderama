@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="LojaLimpeza.Api/LojaLimpeza.Api.csproj" />
+  <Project Path="LojaLimpeza.Maui/LojaLimpeza.Maui.csproj" />
+  <Project Path="LojaLimpeza.Shared/LojaLimpeza.Shared.csproj" />
+  <Project Path="LojaLimpeza.Tests/LojaLimpeza.Tests.csproj" />
+</Solution>

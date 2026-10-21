@@ -1,0 +1,31 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LojaLimpeza.Maui.Views.NovoPedidoPage"
+             Title="Novo Pedido">
+    <VerticalStackLayout Padding="20" Spacing="10">
+        
+        <Picker x:Name="PickerCategoria" Title="Selecione a Categoria" />
+        
+        <!-- Atualizado de ListView para CollectionView -->
+        <CollectionView x:Name="ListaProdutos">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Removido o ViewCell obsoleto -->
+                    <HorizontalStackLayout Spacing="15" Padding="10">
+                        <VerticalStackLayout WidthRequest="150">
+                            <Label Text="{Binding Nome}" FontAttributes="Bold" />
+                            <Label Text="{Binding UnidadeMedida}" />
+                            <Label Text="{Binding PrecoUnitario, StringFormat='R$ {0:F2}'}" />
+                        </VerticalStackLayout>
+                        
+                        <Entry Keyboard="Numeric" Placeholder="Qtd" WidthRequest="60" />
+                        <Button Text="Add" Clicked="OnAddCarrinhoClicked" CommandParameter="{Binding .}" />
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label x:Name="LblTotal" Text="Total: R$ 0,00" FontAttributes="Bold" FontSize="18" Margin="0,20,0,10" />
+        <Button Text="Finalizar Pedido" Clicked="OnFinalizarPedidoClicked" BackgroundColor="Green" TextColor="White" />
+    </VerticalStackLayout>
+</ContentPage>
