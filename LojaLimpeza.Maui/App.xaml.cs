@@ -1,16 +1,14 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
 namespace LojaLimpeza.Maui;
 
 public partial class App : Application
 {
-	public App()
-	{
-		InitializeComponent();
-	}
+    private readonly MainPage _mainPage;
 
-	protected override Window CreateWindow(IActivationState? activationState)
-	{
-		return new Window(new AppShell());
-	}
+    public App(MainPage mainPage)
+    {
+        InitializeComponent();
+        _mainPage = mainPage;
+    }
+
+    protected override Window CreateWindow(IActivationState? activationState) => new(new AppShell(_mainPage));
 }

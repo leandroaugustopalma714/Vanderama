@@ -1,6 +1,0 @@
-﻿namespace LojaLimpeza.Shared;
-
-public class Class1
-{
-
-}

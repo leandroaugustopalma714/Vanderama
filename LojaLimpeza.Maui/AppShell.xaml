@@ -3,13 +3,4 @@
     x:Class="LojaLimpeza.Maui.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:LojaLimpeza.Maui.Views"
-    Shell.FlyoutBehavior="Disabled">
-
-    <!-- Mudamos o local:MainPage para local:NovoPedidoPage -->
-    <ShellContent
-        Title="Novo Pedido"
-        ContentTemplate="{DataTemplate local:NovoPedidoPage}"
-        Route="NovoPedidoPage" />
-
-</Shell>
+    Shell.FlyoutBehavior="Disabled" />

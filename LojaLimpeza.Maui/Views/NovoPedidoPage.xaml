@@ -1,31 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LojaLimpeza.Maui.Views.NovoPedidoPage"
-             Title="Novo Pedido">
-    <VerticalStackLayout Padding="20" Spacing="10">
-        
-        <Picker x:Name="PickerCategoria" Title="Selecione a Categoria" />
-        
-        <!-- Atualizado de ListView para CollectionView -->
-        <CollectionView x:Name="ListaProdutos">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <!-- Removido o ViewCell obsoleto -->
-                    <HorizontalStackLayout Spacing="15" Padding="10">
-                        <VerticalStackLayout WidthRequest="150">
-                            <Label Text="{Binding Nome}" FontAttributes="Bold" />
-                            <Label Text="{Binding UnidadeMedida}" />
-                            <Label Text="{Binding PrecoUnitario, StringFormat='R$ {0:F2}'}" />
-                        </VerticalStackLayout>
-                        
-                        <Entry Keyboard="Numeric" Placeholder="Qtd" WidthRequest="60" />
-                        <Button Text="Add" Clicked="OnAddCarrinhoClicked" CommandParameter="{Binding .}" />
-                    </HorizontalStackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+             Title="Fazer pedido"
+             BackgroundColor="#F4F7F5">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="13">
+            <VerticalStackLayout Spacing="3">
+                <Label Text="Novo pedido" FontSize="25" FontAttributes="Bold" TextColor="#18312D" />
+                <Label x:Name="LblCliente" Text="Cliente" FontSize="12" TextColor="#71817C" />
+                <Label x:Name="LblStatusCatalogo" Text="Catálogo sincronizado com a loja." FontSize="11" TextColor="#71817C" />
+            </VerticalStackLayout>
 
-        <Label x:Name="LblTotal" Text="Total: R$ 0,00" FontAttributes="Bold" FontSize="18" Margin="0,20,0,10" />
-        <Button Text="Finalizar Pedido" Clicked="OnFinalizarPedidoClicked" BackgroundColor="Green" TextColor="White" />
-    </VerticalStackLayout>
+            <Border Padding="13" Stroke="#E0E8E3" StrokeShape="RoundRectangle 12" BackgroundColor="White">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Categoria" FontSize="12" FontAttributes="Bold" TextColor="#53645E" />
+                    <Picker x:Name="PickerCategoria" Title="Todas as categorias" ItemDisplayBinding="{Binding Nome}" SelectedIndexChanged="OnCategoriaChanged" />
+                </VerticalStackLayout>
+            </Border>
+
+            <VerticalStackLayout Spacing="7">
+                <Label Text="Produtos" FontSize="17" FontAttributes="Bold" TextColor="#18312D" />
+                <CollectionView x:Name="ListaProdutos" HeightRequest="350" SelectionMode="None">
+                    <CollectionView.EmptyView><Label Text="Não há produtos no catálogo local. Conecte-se e atualize o catálogo." Padding="14" TextColor="#71817C" /></CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="0,0,0,8" Padding="12" Stroke="#E0E8E3" StrokeShape="RoundRectangle 10" BackgroundColor="White">
+                                <Grid ColumnDefinitions="*,70,Auto" ColumnSpacing="8">
+                                    <VerticalStackLayout Spacing="3" VerticalOptions="Center">
+                                        <Label Text="{Binding Nome}" FontAttributes="Bold" TextColor="#18312D" />
+                                        <Label Text="{Binding Detalhe}" FontSize="11" TextColor="#71817C" />
+                                        <Label Text="{Binding PrecoTexto}" FontSize="12" TextColor="#1D705C" />
+                                    </VerticalStackLayout>
+                                    <Entry Grid.Column="1" Text="{Binding QuantidadeTexto, Mode=TwoWay}" Placeholder="Qtd." Keyboard="Numeric" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                                    <Button Grid.Column="2" Text="Adicionar" Padding="10,7" FontSize="11" Clicked="OnAdicionarItemClicked" CommandParameter="{Binding .}" BackgroundColor="#E7F2ED" TextColor="#1D705C" CornerRadius="8" VerticalOptions="Center" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="7">
+                <Label Text="Carrinho" FontSize="17" FontAttributes="Bold" TextColor="#18312D" />
+                <CollectionView x:Name="ListaCarrinho" HeightRequest="220" SelectionMode="None">
+                    <CollectionView.EmptyView><Label Text="Adicione produtos para montar o pedido." Padding="12" TextColor="#71817C" /></CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="0,0,0,7" Padding="10" Stroke="#E0E8E3" StrokeShape="RoundRectangle 9" BackgroundColor="White">
+                                <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
+                                    <VerticalStackLayout Spacing="2" VerticalOptions="Center">
+                                        <Label Text="{Binding Nome}" FontAttributes="Bold" FontSize="12" TextColor="#18312D" />
+                                        <Label Text="{Binding Unidade}" FontSize="10" TextColor="#71817C" />
+                                    </VerticalStackLayout>
+                                    <Label Grid.Column="1" Text="{Binding SubtotalTexto}" FontAttributes="Bold" FontSize="12" TextColor="#1D705C" VerticalOptions="Center" />
+                                    <Button Grid.Column="2" Text="Remover" FontSize="10" Padding="8,5" Clicked="OnRemoverItemClicked" CommandParameter="{Binding .}" BackgroundColor="#FFF3EF" TextColor="#955044" CornerRadius="7" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+
+            <Label x:Name="LblTotal" Text="Total: R$ 0,00" FontSize="20" FontAttributes="Bold" TextColor="#173F36" HorizontalOptions="End" />
+            <Button Text="Salvar pedido" Clicked="OnSalvarPedidoClicked" BackgroundColor="#173F36" TextColor="White" CornerRadius="10" HeightRequest="50" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

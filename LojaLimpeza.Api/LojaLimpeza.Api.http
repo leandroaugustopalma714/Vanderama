@@ -1,6 +1,31 @@
 @LojaLimpeza.Api_HostAddress = http://localhost:5256
 
-GET {{LojaLimpeza.Api_HostAddress}}/weatherforecast/
+### API online
+GET {{LojaLimpeza.Api_HostAddress}}/api/health
 Accept: application/json
 
-###
+### Categorias
+GET {{LojaLimpeza.Api_HostAddress}}/api/categorias
+Accept: application/json
+
+### Produtos ativos
+GET {{LojaLimpeza.Api_HostAddress}}/api/produtos
+Accept: application/json
+
+### Clientes
+GET {{LojaLimpeza.Api_HostAddress}}/api/clientes
+Accept: application/json
+
+### Pedidos
+GET {{LojaLimpeza.Api_HostAddress}}/api/pedidos
+Accept: application/json
+
+### Atualizar produto — troque o ID pelos dados retornados em GET /api/produtos
+PUT {{LojaLimpeza.Api_HostAddress}}/api/produtos/1
+Content-Type: application/json
+
+{
+  "precoUnitario": 2.49,
+  "estoque": 120,
+  "ativo": true
+}

@@ -4,6 +4,13 @@
 <dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>O aplicativo acessa a API da loja na rede local para sincronizar o catálogo e os pedidos.</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>

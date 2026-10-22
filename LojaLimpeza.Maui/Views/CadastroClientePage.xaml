@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LojaLimpeza.Maui.Views.CadastroClientePage"
+             Title="Cadastro do cliente"
+             BackgroundColor="#F4F7F5">
+    <ScrollView>
+        <VerticalStackLayout Padding="22" Spacing="13">
+            <VerticalStackLayout Spacing="4">
+                <Label Text="PRIMEIRO ACESSO" FontSize="11" CharacterSpacing="1.7" TextColor="#1D705C" FontAttributes="Bold" />
+                <Label Text="Cadastre seus dados" FontSize="26" FontAttributes="Bold" TextColor="#18312D" />
+                <Label Text="O cadastro será salvo no aparelho e enviado à loja quando houver conexão." FontSize="12" TextColor="#71817C" />
+            </VerticalStackLayout>
+            <Border Padding="16" Stroke="#E0E8E3" StrokeShape="RoundRectangle 12" BackgroundColor="White">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Tipo de pessoa" FontAttributes="Bold" FontSize="12" TextColor="#53645E" />
+                    <Picker x:Name="PickerTipoPessoa" Title="Selecione" SelectedIndex="0">
+                        <Picker.Items><x:String>Pessoa física (CPF)</x:String><x:String>Pessoa jurídica (CNPJ)</x:String></Picker.Items>
+                    </Picker>
+                    <Entry x:Name="EntryNome" Placeholder="Nome completo ou razão social" MaxLength="160" />
+                    <Entry x:Name="EntryDocumento" Placeholder="CPF ou CNPJ (somente números ou formatado)" />
+                    <Entry x:Name="EntryTelefone" Placeholder="Telefone (opcional)" Keyboard="Telephone" MaxLength="30" />
+                    <Entry x:Name="EntryEmail" Placeholder="E-mail (opcional)" Keyboard="Email" MaxLength="160" />
+                    <Entry x:Name="EntryEndereco" Placeholder="Endereço completo" MaxLength="240" />
+                </VerticalStackLayout>
+            </Border>
+            <Button Text="Salvar cadastro e continuar" Clicked="OnSalvarClicked" BackgroundColor="#173F36" TextColor="White" CornerRadius="10" HeightRequest="50" FontAttributes="Bold" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

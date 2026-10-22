@@ -1,0 +1,56 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Painel da loja";
+}
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#173f36" />
+  <title>@ViewData["Title"] - Loja Limpeza</title>
+  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+<div class="topbar">
+  <a class="brand" href="/" aria-label="Loja Limpeza, início"><span class="brand-mark">L</span><span><strong>Loja Limpeza</strong><small>Gestão de pedidos</small></span></a>
+  <div class="connection"><span id="connection-dot" class="dot"></span><span id="connection-label">Conectando à API</span></div>
+</div>
+<main class="container">
+  <section class="intro">
+    <div><p class="eyebrow">PAINEL WEB</p><h1>Visão geral da loja</h1><p class="muted">Pedidos, clientes e catálogo conectados à API e ao MySQL.</p></div>
+    <button id="refresh-button" class="button secondary" type="button">Atualizar</button>
+  </section>
+  <section class="stats" aria-label="Resumo">
+    <article class="stat-card"><span>Pedidos</span><strong id="stat-orders">—</strong></article>
+    <article class="stat-card"><span>Clientes</span><strong id="stat-customers">—</strong></article>
+    <article class="stat-card"><span>Produtos ativos</span><strong id="stat-products">—</strong></article>
+    <article class="stat-card"><span>Valor dos pedidos</span><strong id="stat-sales">—</strong></article>
+  </section>
+  <section class="panel">
+    <nav class="tabs" aria-label="Seções">
+      <button class="tab active" data-tab="orders" type="button">Pedidos</button>
+      <button class="tab" data-tab="customers" type="button">Clientes</button>
+      <button class="tab" data-tab="products" type="button">Produtos e estoque</button>
+      <span id="last-updated" class="updated">Aguardando dados</span>
+    </nav>
+    <div id="message" class="message" role="status" aria-live="polite"></div>
+    <section id="orders-view" class="tab-view">
+      <div class="view-heading"><div><h2>Pedidos recebidos</h2><p class="muted">Atualização automática a cada 15 segundos.</p></div></div>
+      <div class="table-wrap"><table><thead><tr><th>Pedido</th><th>Cliente</th><th>Data</th><th>Itens</th><th>Status</th><th class="number">Total</th></tr></thead><tbody id="orders-body"></tbody></table></div>
+    </section>
+    <section id="customers-view" class="tab-view hidden">
+      <div class="view-heading"><div><h2>Clientes cadastrados</h2><p class="muted">Cadastros sincronizados pelo aplicativo.</p></div></div>
+      <div class="table-wrap"><table><thead><tr><th>Cliente</th><th>Tipo</th><th>CPF/CNPJ</th><th>Telefone</th><th>E-mail</th><th>Endereço</th></tr></thead><tbody id="customers-body"></tbody></table></div>
+    </section>
+    <section id="products-view" class="tab-view hidden">
+      <div class="view-heading"><div><h2>Catálogo e estoque</h2><p class="muted">Preço, estoque e situação do produto usados pelo app ao sincronizar.</p></div></div>
+      <div class="table-wrap"><table><thead><tr><th>Produto</th><th>Categoria</th><th>Unidade</th><th>Preço</th><th>Estoque</th><th>Situação</th><th>Ação</th></tr></thead><tbody id="products-body"></tbody></table></div>
+    </section>
+  </section>
+  <footer>Loja Limpeza <span>•</span> Aplicativo .NET MAUI + API ASP.NET Core + MySQL</footer>
+</main>
+<script src="~/js/dashboard.js" asp-append-version="true"></script>
+</body>
+</html>
